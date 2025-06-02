@@ -1,0 +1,160 @@
+:root {
+--primary-blue: #00b0f0;
+--secondary-yellow: #ffeb3b;
+--text-color: #ffffff;
+--background-color: rgba(26, 26, 26, 0.85);
+--card-background: rgba(51, 51, 51, 0.85);
+--border-color: #555555;
+}
+body {
+font-family: sans-serif;
+background-image: url('https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoic3VwZXJjZWxsXC9maWxlXC96TGkydjhmQXR5cXFrRnRDSFpBTS5wbmcifQ:supercell:DgjiQ9Q2TNgiwwKLTK7fkEaJa7BQJvu3D-GtvToAL6k?width=800');
+background-size: cover;
+background-attachment: fixed;
+background-position: center;
+color: var(--text-color);
+margin: 0;
+padding: 0;
+line-height: 1.6;
+}
+header {
+background-color: rgba(0, 0, 0, 0.7);
+padding: 10px 20px;
+text-align: center;
+border-bottom: 3px solid var(--secondary-yellow);
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+header img {
+max-width: 80px;
+border-radius: 50%;
+border: 3px solid var(--primary-blue);
+margin-right: 20px;
+}
+nav ul {
+list-style: none;
+padding: 0;
+margin: 0;
+display: flex;
+}
+nav li {
+margin-left: 20px;
+}
+nav a {
+color: var(--text-color);
+text-decoration: none;
+font-weight: bold;
+padding: 5px 10px;
+border-radius: 5px;
+transition: background-color 0.3s ease;
+font-family: 'Lilita One', sans-serif;
+-webkit-text-stroke: 1px black;
+text-stroke: 1px black;
+}
+nav a:hover {
+background-color: var(--primary-blue);
+color: var(--text-color);
+}
+main {
+padding: 20px;
+max-width: 1000px;
+margin: 0 auto;
+}
+.content-section {
+background-color: var(--card-background);
+margin-bottom: 20px;
+padding: 20px;
+border-radius: 8px;
+border: 1px solid var(--border-color);
+box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.content-section h2,
+.content-section h3 {
+color: var(--text-color);
+border-bottom: 2px solid var(--secondary-yellow);
+padding-bottom: 10px;
+margin-top: 0;
+font-family: 'Lilita One', sans-serif;
+-webkit-text-stroke: 1px black;
+text-stroke: 1px black;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+#about-content h3 {
+margin-top: 1em;
+}
+#about-content a {
+color: var(--primary-blue);
+text-decoration: underline;
+}
+#about-content a:hover {
+color: var(--secondary-yellow);
+}
+#latest-episode {
+margin-bottom: 30px;
+}
+#latest-video-container {
+position: relative;
+padding-bottom: 56.25%;
+height: 0;
+overflow: hidden;
+max-width: 800px;
+margin: 0 auto;
+background-color: var(--background-color);
+border-radius: 8px;
+}
+#latest-video-container iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border: none;
+}
+#other-episodes h3 {
+margin-top: 20px;
+}
+.video-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 20px;
+}
+.video-item {
+background-color: var(--background-color);
+padding: 10px;
+border-radius: 8px;
+border: 1px solid var(--border-color);
+text-align: center;
+overflow: hidden;
+}
+.video-item img {
+width: 100%;
+height: auto;
+border-radius: 4px;
+margin-bottom: 10px;
+border: 1px solid var(--primary-blue);
+}
+.video-item h4 {
+font-family: 'Lilita One', sans-serif;
+color: var(--primary-blue);
+margin: 0 0 5px 0;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.video-item a {
+text-decoration: none;
+color: inherit;
+display: block;
+}
+.video-placeholder {
+display: none;
+}
+footer {
+text-align: center;
+padding: 20px;
+margin-top: 20px;
+background-color: rgba(0, 0, 0, 0.7);
+color: var(--border-color);
+border-top: 3px solid var(--secondary-yellow);
+}
