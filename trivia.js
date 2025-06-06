@@ -1,10 +1,8 @@
-// Trivia page script
 console.log("Daily Dose of Brawl Stars Trivia page loaded!");
 
 const YOUTUBE_API_KEY = 'AIzaSyCYe03EHYqxqccfee38Hu_ERf_pu6cqoEA';
-const CHANNEL_ID = 'UCJRbEJwGiOidbYuqXMOXnZA'; // Daily Dose of Brawl Stars channel ID
+const CHANNEL_ID = 'UCJRbEJwGiOidbYuqXMOXnZA';
 
-// Load trivia posts when the page is ready
 document.addEventListener('DOMContentLoaded', async () => {
     const triviaContainer = document.getElementById('trivia-container');
     
@@ -16,7 +14,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        // Get channel details to fetch community posts
         const channelUrl = `https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`;
         const response = await fetch(channelUrl);
         
@@ -27,7 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = await response.json();
         
         if (data.items && data.items.length > 0) {
-            // we'll display channel information and latest videos as trivia
             const channelInfo = data.items[0].snippet;
             
             triviaContainer.innerHTML = '';
@@ -110,16 +106,16 @@ async function fetchVideosAsTrivia(container) {
 
 function generateFunFact(videoTitle, index) {
     const brawlStarsFacts = [
-        "Did you know? Brawl Stars was globally released on December 12, 2018!",
-        "The first Brawl Stars Championship was held in 2020 with a prize pool of $1 million!",
-        "Spike, one of the legendary brawlers, doesn't have a voice in the game!",
-        "Brawl Stars was initially played in portrait mode during its beta version!",
-        "El Primo's name translates to 'The Cousin' in Spanish!",
-        "The longest Brawl Stars match ever recorded lasted over 13 minutes in Boss Fight!",
-        "Brawl Stars was developed by the same company that created Clash of Clans and Clash Royale!",
-        "There are over 50 unique brawlers in the game as of 2025!",
-        "Showdown was the first game mode available in Brawl Stars!",
-        "The most expensive skin in Brawl Stars costs 299 gems!"
+        "Coming Soon",
+        "Coming Soon",
+        "Coming Soon",
+        "Coming Soon",
+        "Coming Soon",
+        "Coming Soon",
+        "Coming Soon",
+        "Coming Soon",
+        "Coming Soon",
+        "Coming Soon"
     ];
     
     if (index < brawlStarsFacts.length) {
