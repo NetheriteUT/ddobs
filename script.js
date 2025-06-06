@@ -1,11 +1,9 @@
-// Basic script file for potential future interactivity
 console.log("Daily Dose of Brawl Stars website loaded!");
 
 const YOUTUBE_API_KEY = 'AIzaSyCYe03EHYqxqccfee38Hu_ERf_pu6cqoEA'; 
 
 const CHANNEL_ID = 'UCJRbEJwGiOidbYuqXMOXnZA'; 
 
-// Global variables for episode timeline
 let allVideos = [];
 let isLoadingMoreVideos = false;
 let nextPageToken = null;
@@ -67,7 +65,6 @@ function displayVideos(videos) {
         return;
     }
 
-    // Display the latest video (only if on index.html)
     if (latestVideoContainer) {
         const latestVideo = videos[0];
         const latestVideoId = latestVideo.snippet.resourceId.videoId;
@@ -80,9 +77,8 @@ function displayVideos(videos) {
     }
 
 
-    // Display the rest of the videos in the grid (only if on index.html)
     if (otherVideosGrid) {
-        otherVideosGrid.innerHTML = ''; // Clear placeholders
+        otherVideosGrid.innerHTML = ''; 
         for (let i = 1; i < videos.length; i++) {
             const video = videos[i];
             const videoId = video.snippet.resourceId.videoId;
@@ -107,21 +103,17 @@ function createTrophyRoadTimeline(videos) {
     
     if (!trophyRoadScroller) return;
     
-    // Clear loading indicator
     trophyRoadScroller.innerHTML = '';
     
-    // Create background line for the trophy road
     const roadLine = document.createElement('div');
     roadLine.classList.add('road-line');
     trophyRoadScroller.appendChild(roadLine);
     
-    // Add episode nodes
     videos.forEach((video, index) => {
         const videoId = video.snippet.resourceId.videoId;
         const thumbnailUrl = video.snippet.thumbnails.medium ? video.snippet.thumbnails.medium.url : '';
         const title = video.snippet.title;
         
-        // Format the date
         const publishedAt = new Date(video.snippet.publishedAt);
         const formattedDate = publishedAt.toLocaleDateString('en-US', {
             month: 'short',
@@ -145,7 +137,6 @@ function createTrophyRoadTimeline(videos) {
     });
 }
 
-// Function to handle lazy loading more videos when scrolling to the end of the trophy road
 function handleTrophyRoadScroll() {
     const trophyRoadScroller = document.querySelector('.trophy-road-scroller');
     
@@ -154,27 +145,21 @@ function handleTrophyRoadScroll() {
     trophyRoadScroller.addEventListener('scroll', async () => {
         const { scrollLeft, scrollWidth, clientWidth } = trophyRoadScroller;
         
-        // If we're near the end of the scroll and we have more videos to load
         if (scrollLeft + clientWidth >= scrollWidth - 200 && nextPageToken && !isLoadingMoreVideos) {
             isLoadingMoreVideos = true;
             
-            // Add a loading indicator at the end
             const loadingIndicator = document.createElement('div');
             loadingIndicator.classList.add('loading-indicator');
             loadingIndicator.textContent = 'Loading more...';
             trophyRoadScroller.appendChild(loadingIndicator);
             
-            // Get the next page of videos
             const uploadsPlaylistId = await getUploadsPlaylistId(CHANNEL_ID);
             const videoData = await getVideosFromPlaylist(uploadsPlaylistId, 10, nextPageToken);
             
-            // Remove the loading indicator
             trophyRoadScroller.removeChild(loadingIndicator);
             
-            // Add the new videos to our array
             allVideos = [...allVideos, ...videoData.items];
             
-            // Update the trophy road with the new videos
             createTrophyRoadTimeline(allVideos);
             
             isLoadingMoreVideos = false;
@@ -182,14 +167,12 @@ function handleTrophyRoadScroll() {
     });
 }
 
-// Load videos when the page is ready
 document.addEventListener('DOMContentLoaded', async () => {
-    // Check if the video sections exist on the current page
     const latestVideoContainer = document.getElementById('latest-video-container');
     const otherVideosGrid = document.getElementById('other-videos-grid');
     const trophyRoadScroller = document.querySelector('.trophy-road-scroller');
 
-    if (latestVideoContainer || otherVideosGrid || trophyRoadScroller) { // Check for all possible video containers
+    if (latestVideoContainer || otherVideosGrid || trophyRoadScroller) {
         if (YOUTUBE_API_KEY === 'YOUR_API_KEY') {
             console.warn('YouTube API key not set. Video loading will not work.');
             if (latestVideoContainer) latestVideoContainer.innerHTML = '<p>Please set your YouTube API key in script.js to load videos.</p>';
@@ -201,13 +184,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const uploadsPlaylistId = await getUploadsPlaylistId(CHANNEL_ID);
 
         if (uploadsPlaylistId) {
-            // For the main video display
             if (latestVideoContainer || otherVideosGrid) {
                 const videoData = await getVideosFromPlaylist(uploadsPlaylistId, 10);
                 displayVideos(videoData.items);
             }
             
-            // For the trophy road timeline
             if (trophyRoadScroller) {
                 const videoData = await getVideosFromPlaylist(uploadsPlaylistId, 20);
                 allVideos = videoData.items;
